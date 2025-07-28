@@ -12,6 +12,14 @@ application {
     mainClass = "io.ktor.server.netty.EngineMain"
 }
 
+sourceSets {
+    main {
+        resources {
+            srcDirs("src/main/resources")
+        }
+    }
+}
+
 repositories {
     mavenCentral()
 }
