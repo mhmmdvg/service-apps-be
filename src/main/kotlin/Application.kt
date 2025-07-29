@@ -24,6 +24,7 @@ fun Application.module() {
         })
     }
 
+
     configureDI()
     configureSecurity()
     configureMonitoring()

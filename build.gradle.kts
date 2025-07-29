@@ -20,6 +20,17 @@ sourceSets {
     }
 }
 
+tasks.withType<ProcessResources> {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+
+ktor {
+    fatJar {
+        archiveFileName.set("app-all.jar")
+    }
+}
+
+
 repositories {
     mavenCentral()
 }
