@@ -18,4 +18,12 @@ data class AuthenticationResponse(
     val isActive: Boolean,
 )
 
-
+@Serializable
+data class UserData(
+    val id: String,
+    val name: String,
+    val email: String,
+    val username: String,
+    val password: String,
+    val isActive: Boolean,
+)
