@@ -1,6 +1,7 @@
 package com
 
 import com.config.DatabaseFactory
+import com.di.configureDI
 import com.plugins.configureRouting
 import com.plugins.configureSecurity
 import io.ktor.serialization.kotlinx.json.json
@@ -23,8 +24,8 @@ fun Application.module() {
         })
     }
 
+    configureDI()
     configureSecurity()
     configureMonitoring()
-    configureSerialization()
     configureRouting()
 }

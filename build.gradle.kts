@@ -26,6 +26,8 @@ repositories {
 
 dependencies {
 
+    implementation("io.insert-koin:koin-ktor:3.5.6")
+    implementation("io.insert-koin:koin-logger-slf4j:3.5.6")
     implementation("com.password4j:password4j:1.7.3")
     implementation("org.jetbrains.exposed:exposed-core:0.45.0")
     implementation("org.jetbrains.exposed:exposed-dao:0.45.0")
