@@ -4,10 +4,11 @@ import com.models.AuthenticationRequest
 import com.models.AuthenticationResponse
 import com.models.HTTPResponse
 import com.repository.AuthRepository
+
 class AuthService(
     private val authRepository: AuthRepository,
 ) {
-    suspend fun authenticate(authRequest: AuthenticationRequest): HTTPResponse<AuthenticationResponse> {
+    fun authenticate(authRequest: AuthenticationRequest): HTTPResponse<AuthenticationResponse> {
         return try {
             val user = authRepository.findByEmail(authRequest.email)
                 ?: return HTTPResponse(
@@ -15,16 +16,20 @@ class AuthService(
                     message = "Invalid Credentials"
                 )
 
-            val isPasswordValid = PasswordService.verifyPassword(
-                plain = authRequest.password,
-                hashed = user.password
-            )
-
-            if (!isPasswordValid) {
-                return HTTPResponse(
-                    success = false,
-                    message = "Invalid Credentials"
+            val isPasswordValid = user.password?.let {
+                PasswordService.verifyPassword(
+                    plain = authRequest.password,
+                    hashed = it
                 )
+            }
+
+            isPasswordValid?.let {
+                if (!it) {
+                    return HTTPResponse(
+                        success = false,
+                        message = "Invalid Credentials"
+                    )
+                }
             }
 
             if (!user.isActive) {

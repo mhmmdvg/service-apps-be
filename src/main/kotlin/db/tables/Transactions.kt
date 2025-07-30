@@ -13,7 +13,9 @@ object Transactions : UUIDTable("transactions") {
     val customerName = varchar("customer_name", 255)
     val customerNumber = varchar("customer_number", 255)
     val customerEmail = varchar("customer_email", 255)
-    val createdAt = timestamp("created_at").default(Instant.now())
+    val amount = long("amount")
+    val createdAt = timestamp("created_at").clientDefault { Instant.now() }
     val updatedAt = timestamp("updated_at").nullable()
     val deletedAt = timestamp("deleted_at").nullable()
+    val cashierId = uuid("cashier_id").references(Users.id)
 }
