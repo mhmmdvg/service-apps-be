@@ -24,6 +24,6 @@ data class UserData(
     val name: String,
     val email: String,
     val username: String,
-    val password: String,
+    val password: String? = null,
     val isActive: Boolean,
 )

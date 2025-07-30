@@ -3,12 +3,10 @@ package com.services
 import com.models.DatabaseHealth
 import com.models.HTTPResponse
 import com.models.HealthResponse
-import kotlinx.coroutines.withTimeout
 import kotlinx.coroutines.withTimeoutOrNull
 import org.jetbrains.exposed.sql.transactions.experimental.newSuspendedTransaction
 
 class HealthService {
-
    suspend fun checkHealth(): HTTPResponse<HealthResponse> {
         return try {
             val dbHealth = checkDatabaseHealth()
